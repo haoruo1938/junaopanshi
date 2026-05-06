@@ -95,6 +95,42 @@ set VLM_MODEL=gpt-4o-mini
 - `go to the bed`
 - `navigate to table`
 
+## 网站交付与登录说明（怎么登）
+
+### 访问地址
+
+- 本机访问：`http://127.0.0.1:7860` 或 `http://localhost:7860`
+- 局域网访问：`http://<部署机器IP>:7860`
+- 临时外网访问（Gradio 隧道）：设置 `GRADIO_SHARE=1` 后启动，终端会输出一个 `https://xxxx.gradio.live` 地址
+
+### 登录方式（推荐交付时开启）
+
+项目已支持 Web 端基础登录认证（在 `app.py` 中通过环境变量控制）：
+
+```bash
+set WEB_USERNAME=demo
+set WEB_PASSWORD=demo123
+.\.venv\Scripts\python .\app.py
+```
+
+打开网站后会先看到登录框，输入上面的用户名和密码即可进入。
+
+### 不开启登录的情况
+
+- 如果未设置 `WEB_USERNAME` 和 `WEB_PASSWORD`，网站默认不需要登录，打开地址即可使用。
+
+### 一份可直接交付的“网站登录说明”模板
+
+可直接发给验收方：
+
+```text
+系统名称：Embodied Navigation MVP
+访问地址：http://<服务器IP>:7860
+登录账号：demo
+登录密码：demo123
+备注：登录后在输入框中提交导航指令，例如“请到沙发旁边”。
+```
+
 ## Demo（命令行版）
 
 新增 `demo_cli.py`，用于不启动 Web 页面也能演示完整链路：

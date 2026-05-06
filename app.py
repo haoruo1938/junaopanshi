@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import atexit
+import os
 from typing import Generator
 
 import gradio as gr
@@ -101,4 +102,15 @@ with gr.Blocks(title="Embodied Navigation MVP") as demo:
 
 
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=7860, inbrowser=True)
+    web_user = os.getenv("WEB_USERNAME", "").strip()
+    web_pass = os.getenv("WEB_PASSWORD", "").strip()
+    gradio_share = os.getenv("GRADIO_SHARE", "0").strip().lower() in {"1", "true", "yes"}
+    auth = (web_user, web_pass) if web_user and web_pass else None
+
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=7860,
+        inbrowser=True,
+        share=gradio_share,
+        auth=auth,
+    )
