@@ -1,0 +1,6 @@
+.venv/
+.venv-linux/
+__pycache__/
+*.pyc
+.gradio/
+outputs/

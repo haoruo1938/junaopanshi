@@ -1,0 +1,1 @@
+"""Embodied navigation MVP package."""
